@@ -1,0 +1,11 @@
+{
+  "name": "msci-446",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/kevin51jiang/msci-446",
+  "author": "Kevin Jiang <kevin51jiang@email.com>",
+  "license": "MIT",
+  "scripts": {
+    "clean": "node ./cleaning/cleanRaw.js"
+  }
+}
