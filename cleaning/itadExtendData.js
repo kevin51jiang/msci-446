@@ -1,5 +1,7 @@
 const { default: axios } = require("axios");
 const cheerio = require("cheerio");
+const path = require("path");
+const glob = require("glob");
 const fs = require("fs");
 
 function readFile(filename) {
@@ -14,22 +16,21 @@ function writeObj(filename, obj) {
   fs.writeFileSync(filename, JSON.stringify(obj));
 }
 
-
 // gets the sale data from itad
-// we use the itadPlain in this case, go to url 
+// we use the itadPlain in this case, go to url
 // https://new.isthereanydeal.com/game/residentevilbiohazardhdremaster/history/#cp:detail;cc:cut;cs:duration
 // https://new.isthereanydeal.com/game/${itadPlain}/history/#cp:detail;cc:cut;cs:duration
 
 // it gives us something similar to ../data/test.html , where we have to extract the sale days from the HTML
 
-const file = readFile("./data/test.html")
+const file = readFile("./data/test.html");
 
+function findSalesHistory(filename) {
+  const $ = cheerio.load(file);
 
-const $ = cheerio.load(file);
+  let sales = [];
 
-let sales = []
-
-const hehe = $('.js-log-entry').eq(0).map((ind, el) => {
+  $(".js-log-entry").each((ind, el) => {
     // each element is a "sale", aka a "js-log-entry" class
 
     // <div class='gp-log__entry js-log-entry' data-log-shop='25'>
@@ -68,17 +69,63 @@ const hehe = $('.js-log-entry').eq(0).map((ind, el) => {
     //     </div>
     // </div>
 
+    // Aternatively for historical lows:
+    // <div class='gp-log__curr gp-log-data__new'>
+    //     <div class='ptag ptag--fh ptag--log'><span class='ptag__flag'>H</span><span
+    //             class='ptag__price'>C$4.99</span></div>
+    // </div>
+
     // ^ above labelled things are the ones I want to keep
 
- 
-    
-    return {
-        shopId: el.attribs['data-log-shop'],
-        shopName: $(this).children().text()
-    }
-   
-})
+    let newActual = $(el)
+      .children()
+      .eq(5)
+      .children()
+      .eq(3)
+      .text()
+      .replace("H", "")
+      .trim();
 
-console.log(hehe)
+    sales.push({
+      shopId: el.attribs["data-log-shop"],
+      shopName: $(el).children().eq(1).children().eq(0).text(), // 1-0-0
+      changeLength: $(el).children().eq(2).children().eq(0).text(), // 2-0
+      timeSinceLastChange: $(el).children().eq(2).children().eq(1).text(), // 2-1
+      prevDiscountPercentage: $(el)
+        .children()
+        .eq(4)
+        .children()
+        .eq(0)
+        .children()
+        .eq(0)
+        .text(), // 4-0-0
+      newDiscountPercentage: $(el)
+        .children()
+        .eq(4)
+        .children()
+        .eq(0)
+        .children()
+        .eq(2)
+        .text(), // 4-0-2
+      prevActual: $(el).children().eq(5).children().eq(1).text(), // 5-1
+      newActual, // THIS IS A SPECIAL CASE 5-3, there is option of having historical low
+      prevRegular: $(el).children().eq(5).children().eq(5).text(), //5-5
+      newRegular: $(el).children().eq(5).children().eq(7).text(), //5-7
+    });
+  });
 
+  const itadPlain = path.basename(filename).replace(".html", "");
+  console.log(itadPlain);
+  writeObj(`./data/working/itadProcessed/${itadPlain}.json`, sales);
+}
 
+glob("./data/working/itadData/*.html", {}, function (er, files) {
+  // files is an array of filenames.
+  // If the `nonull` option is set, and nothing
+  // was found, then files is ["**/*.js"]
+  // er is an error object or null.
+
+  files.forEach((file) => {
+    findSalesHistory(file);
+  });
+});
