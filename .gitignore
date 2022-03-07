@@ -132,5 +132,4 @@ dist
 
 
 # too big
-data/processed/data.json
 report/*.json
