@@ -1,4 +1,3 @@
-const { default: axios } = require("axios");
 const cheerio = require("cheerio");
 const path = require("path");
 const glob = require("glob");
@@ -89,6 +88,7 @@ function findSalesHistory(filename) {
     sales.push({
       shopId: el.attribs["data-log-shop"],
       shopName: $(el).children().eq(1).children().eq(0).text(), // 1-0-0
+      timeOfChange: $(el).children().eq(1).children().eq(1).text(),
       changeLength: $(el).children().eq(2).children().eq(0).text(), // 2-0
       timeSinceLastChange: $(el).children().eq(2).children().eq(1).text(), // 2-1
       prevDiscountPercentage: $(el)

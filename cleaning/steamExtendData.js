@@ -24,7 +24,7 @@ try {
   // we want to find the steam
   // cloudflare workers might work LMAO
 
-  let ids = data.map((app) => app.steamId.replace("app/", "")).slice(1000); // just give us an array of numbers, in the form of strings
+  let ids = data.map((app) => app.steamId.replace("app/", "")); // just give us an array of numbers, in the form of strings
 
   var interval = setInterval(() => {
     const id = ids.pop();

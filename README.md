@@ -12,3 +12,15 @@ Get all steam app ids:
 
 Itad docs:
 - https://itad.docs.apiary.io/#reference/game/identifier/get-plain
+
+
+Reasons for using each script (note: they're not named well/logically at all):
+1. cleanRaw.js : given multiple array json files from itad trending games, concatenates the array and outputs it as one json array (itadApps)
+1. GET https://api.isthereanydeal.com/v01/game/plain/list/?key=\<key>&shops=steam , gets apps.json, which relates steamIds to itadPlains
+1. getRaw.js: given apps.json, itadApps, it creates an object that has itadRank, and steamId, and itadPlain. veeery inefficient (if expanding scope, definitely fix this)
+1. steamExtendData.js: given apps.json, it looks on steam for details. Outputs it to working/steamData/\<steamId>.json
+1. downloadItad.js: given apps.json, it looks on new itad page and downloads history from it in html files. Outputs to working/itadData/\<itadPlain>.html
+1. itadExtendData.js: given all html files in working/itadData/, it extracts the sales data and outputs it to working/itadProcessed/\<itadPlain>.json
+
+
+
