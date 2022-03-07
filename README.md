@@ -21,6 +21,8 @@ Reasons for using each script (note: they're not named well/logically at all):
 1. steamExtendData.js: given apps.json, it looks on steam for details. Outputs it to working/steamData/\<steamId>.json
 1. downloadItad.js: given apps.json, it looks on new itad page and downloads history from it in html files. Outputs to working/itadData/\<itadPlain>.html
 1. itadExtendData.js: given all html files in working/itadData/, it extracts the sales data and outputs it to working/itadProcessed/\<itadPlain>.json
-
+1. glue.js: given all previous data, combines to make data/processed/data.json. This has been zipped in the github repo because it is too large to fit. WE HAVE DATA NOW
+1. cleanData1.r: is used to do some preliminary cleaning of data (dropping unused columns, one-hot encoding some fields, removing NA, doing some filtering), and outputs rNormalized.json. Made in exploratory.io.
+1. cleanData2.py: is used to create timestamps from report/rNormalized.json into a tabular version we can use.
 
 
