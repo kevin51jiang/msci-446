@@ -1,7 +1,7 @@
 {
   "name": "msci-446",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "cleaning/itadExtendData.js",
   "repository": "https://github.com/kevin51jiang/msci-446",
   "author": "Kevin Jiang <kevin51jiang@email.com>",
   "license": "MIT",
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.26.0",
-    "cheerio": "^1.0.0-rc.10"
+    "cheerio": "^1.0.0-rc.10",
+    "chrono": "^1.0.5"
   }
 }

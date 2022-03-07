@@ -7,8 +7,8 @@
     "sales": [
       {
         "storeId": 42,
-        "up": "19 hours",
-        "down": "13 minutes",
+        "changeLength": "19 hours",
+        "timeSinceLastChange": "13 minutes",
         "prevDiscountPercentage": "0%",
         "newDiscountPercentage": "75%",
         "prevActual": "C$25.45",
