@@ -133,4 +133,4 @@ dist
 
 # too big
 data/processed/data.json
-data/report/rNormalized.json
+data/report/*.json
