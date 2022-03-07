@@ -130,6 +130,3 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-
-# too big
-report/*.json

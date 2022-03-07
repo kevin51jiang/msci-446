@@ -29,6 +29,7 @@ exploratory::clean_data_frame(exploratory::toDataFrame(exploratory::convertFromJ
   mutate(steam.drm_consolidated = recode(steam.drm_consolidated, "DRM Free!" = "NA", "NONE<br>NO LIMIT machine activation limit" = "NA", "Reality Pump DLM V2<br>no machine activation limit" = "NA", "Reality Pump<br>no machine activation limit" = "NA", "SecuROM™" = "SecuROM", "SecuROM™<br>50 machine activation limit" = "SecuROM", "No 3rd Party DRM" = "NA", "Requires a Kalypso account" = "Kalypso", "Kalypso Launcher (Account registration optional)" = "Kalypso")) %>%
   select(-steam.drm_notice) %>%
   mutate(steam.supported_languages = str_remove_all(steam.supported_languages, "(<strong>|<\\/strong>|languages|with|full|audio|support|<br>|text|<b>|<\\/b>|\\[b\\]|\\[\\/b\\])", remove_extra_space = TRUE), steam.supported_languages = str_to_lower(steam.supported_languages), steam.supported_languages = str_remove_all(steam.supported_languages, "[[:punct:]]+")) %>%
-  hoist(steam.genres, `steam.genres_id` = "id", .remove = FALSE) %>%
+  unnest_wider(steam.genres, names_sep = "_", names_repair = "unique") %>%
+  select(-steam.genres_id) %>%
   mutate(steam.metacritic.score = steam.metacritic.score / max(steam.metacritic.score, na.rm=TRUE)) %>%
   one_hot(steam.drm_consolidated)
