@@ -28,10 +28,59 @@ const file = readFile("./data/test.html")
 
 const $ = cheerio.load(file);
 
-const hehe = $('.js-log').children().map((ind, el) => {
-    return el.chi
+let sales = []
+
+const hehe = $('.js-log').children().eq(0).map((ind, el) => {
+    // each element is a "sale", aka a "js-log-entry" class
+
+    // <div class='gp-log__entry js-log-entry' data-log-shop='25'>
+    //     <div class='gp-log__border' style='background-color:#b76cc7'></div>
+    //     <div class='gp-log__c gp-log__main'>
+    // 1-0-0   <div class='gp-log__shop'><span class='shop'>Gamesload<i
+    //                     class='shop__aff far fa-heart'></i></span></div>
+    // 1-1     <div class='gp-log__time'>2021-01-29 00:15</div>
+    //     </div>
+    //     <div class='gp-log__c gp-log__rel'>
+    // 3-0     <div><i class='fas fa-arrow-alt-up gp-log__dur'></i>19 hours</div>
+    // 3-1     <div><i class='fas fa-arrow-alt-down gp-log__dur'></i>13 minutes</div>
+    //     </div>
+    //     <div class='gp-log__c gp-log__rep'><a
+    //             href='#/page:game/residentevilbiohazardhdremaster/history/report/20395814206/'
+    //             class='gp-log__bug'><i class='fas fa-bug'></i></a></div>
+    //     <div class='gp-log__c'>
+    //         <div class='gp-log__cutchange'>
+    // 5-0-0       <div class='gp-log__cut gp-log__prev'>0%</div>
+    //             <div class='gp-low__del'><i class='fas fa-arrow-alt-right gp-log__arrow'></i></div>
+    // 5-0-2       <div class='gp-log__cut gp-log__curr'>75%</div>
+    //         </div>
+    //     </div>
+    //     <div class='gp-log__c gp-log-data'>
+    //         <div class='gp-log-data__label'>actual:</div>
+    // 6-1    <div class='gp-log__prev gp-log-data__new'>C$25.45</div>
+    //         <div class='gp-log__del'><span class='gp-log__diff  gp-log__diff--less'>C$-19.04</span><i
+    //                 class='fas fa-arrow-alt-right gp-log__arrow'></i></div>
+    // 6-3     <div class='gp-log__curr gp-log-data__new'>C$6.41</div>
+    //         <div class='gp-log-data__label'>regular:</div>
+    // 6-5     <div class='gp-log__prev gp-log-data__old'>C$25.45</div>
+    //         <div class='gp-log__del gp-log-data__old'><span
+    //                 class='gp-log__diff  gp-log__diff--more'>+C$0.17</span><i
+    //                 class='fas fa-arrow-alt-right gp-log__arrow'></i></div>
+    // 6-7     <div class='gp-log__curr gp-log-data__old'>C$25.63</div>
+    //     </div>
+    // </div>
+
+    // ^ above labelled things are the ones I want to keep
+
+    const shopId = el.attribs['data-log-shop']
+    const shopname = $(this).children()
+    // const shopname = c.eq(2)
+
+    sales.push({
+        shopId,
+        shopname
+    })
 })
 
-console.log(heh)
+console.log(sales)
 
 
