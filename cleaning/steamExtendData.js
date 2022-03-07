@@ -60,7 +60,7 @@ try {
       .catch((err) => {
         console.log("had err with ", id);
       });
-  }, 1650);
+  }, 1700);
 } catch (err) {
   console.error(err.toString());
 }
