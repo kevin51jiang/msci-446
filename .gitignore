@@ -131,3 +131,5 @@ dist
 .pnp.*
 
 *sample.json
+
+/working/*.json*

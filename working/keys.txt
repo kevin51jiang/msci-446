@@ -1,0 +1,86 @@
+itad.position
+itad.rank
+itad.sales
+itadPlain
+steam.about_the_game
+steam.categories_description_Captions available
+steam.categories_description_Co-op
+steam.categories_description_Commentary available
+steam.categories_description_Cross-Platform Multiplayer
+steam.categories_description_Full controller support
+steam.categories_description_In-App Purchases
+steam.categories_description_Includes Source SDK
+steam.categories_description_Includes level editor
+steam.categories_description_LAN Co-op
+steam.categories_description_LAN PvP
+steam.categories_description_MMO
+steam.categories_description_Multi-player
+steam.categories_description_Online Co-op
+steam.categories_description_Online PvP
+steam.categories_description_Partial Controller Support
+steam.categories_description_PvP
+steam.categories_description_Remote Play Together
+steam.categories_description_Remote Play on Phone
+steam.categories_description_Remote Play on TV
+steam.categories_description_Remote Play on Tablet
+steam.categories_description_Shared/Split Screen
+steam.categories_description_Shared/Split Screen Co-op
+steam.categories_description_Shared/Split Screen PvP
+steam.categories_description_Single-player
+steam.categories_description_Stats
+steam.categories_description_Steam Achievements
+steam.categories_description_Steam Cloud
+steam.categories_description_Steam Leaderboards
+steam.categories_description_Steam Trading Cards
+steam.categories_description_Steam Turn Notifications
+steam.categories_description_Steam Workshop
+steam.categories_description_SteamVR Collectibles
+steam.categories_description_VR Support
+steam.categories_description_Valve Anti-Cheat enabled
+steam.controller_support
+steam.detailed_description
+steam.developers
+steam.dlc
+steam.drm_consolidated_CrackProof
+steam.drm_consolidated_Denuvo
+steam.drm_consolidated_EA
+steam.drm_consolidated_GameShield
+steam.drm_consolidated_Games for Windows Live
+steam.drm_consolidated_Kalypso
+steam.drm_consolidated_SecuROM
+steam.drm_consolidated_Ubisoft
+steam.ext_user_account_notice
+steam.genres_description_Action
+steam.genres_description_Adventure
+steam.genres_description_Animation & Modeling
+steam.genres_description_Casual
+steam.genres_description_Design & Illustration
+steam.genres_description_Early Access
+steam.genres_description_Education
+steam.genres_description_Free to Play
+steam.genres_description_Game Development
+steam.genres_description_Gore
+steam.genres_description_Indie
+steam.genres_description_Massively Multiplayer
+steam.genres_description_Nudity
+steam.genres_description_Photo Editing
+steam.genres_description_RPG
+steam.genres_description_Racing
+steam.genres_description_Simulation
+steam.genres_description_Software Training
+steam.genres_description_Sports
+steam.genres_description_Strategy
+steam.genres_description_Utilities
+steam.genres_description_Video Production
+steam.genres_description_Violent
+steam.genres_description_Web Publishing
+steam.is_free
+steam.linux_requirements
+steam.mac_requirements
+steam.metacritic.score
+steam.pc_requirements
+steam.required_age
+steam.reviews
+steam.short_description
+steam.steam_appid
+steam.supported_languages
