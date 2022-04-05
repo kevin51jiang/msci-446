@@ -22,16 +22,23 @@ function writeObj(filename, obj) {
 
 // it gives us something similar to ../data/test.html , where we have to extract the sale days from the HTML
 
-const file = readFile("./data/test.html");
+// const file = readFile("./data/test.html");
+// const file2 = readFile('./data/working/itadData/aaero.html')
 
 function findSalesHistory(filename) {
-  const startInd = file.indexOf('return (new Charts.Builder(setup, [{ "zIndex": 4, "name": "Best Price"') + 34
+  const file = readFile(filename);
 
-  const endInd = file.slice(startInd).indexOf("))") + startInd
+  const startInd =
+  // magic numbers
+    file.indexOf(
+      `Charts.Builder`
+    ) + 23;
+  
+  const endInd = file.indexOf("}",startInd) + 1;
 
-  // const priceStr = file.slice(startInd, endInd)
-  const bestPriceSeries = JSON.parse(file.slice(startInd, endInd))[0].data
+  const priceStr = file.slice(startInd, endInd).replace(/\\/g, '').replace(/\\\"/g, '');
 
+  const bestPriceSeries = JSON.parse(priceStr).data;
   const itadPlain = path.basename(filename).replace(".html", "");
   console.log(itadPlain);
   writeObj(`./data/working/itadProcessed/${itadPlain}.json`, bestPriceSeries);
@@ -46,5 +53,6 @@ glob("./data/working/itadData/*.html", {}, function (er, files) {
   files.forEach((file) => {
     findSalesHistory(file);
   });
-  // findSalesHistory(files[0])
+
+  // findSalesHistory("data/working/itadData/aaero.html");
 });

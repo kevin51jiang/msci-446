@@ -12,7 +12,7 @@ function jsonReadFile(filename) {
 }
 
 function writeObj(filename, obj) {
-  fs.writeFileSync(filename, JSON.stringify(obj));
+  fs.writeFileSync(filename, JSON.stringify(obj), "utf-8");
 }
 
 function getJsonFiles(directory) {
